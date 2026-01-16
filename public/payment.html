@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödeme Yap | Ayakkabı Dünyası</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Ödeme Sayfasına Özel Düzenlemeler */
+        body {
+            background-color: #fff;
+        }
+
+        .checkout-header {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            background: linear-gradient(to bottom, #fff, #f7f7f7);
+        }
+
+        .checkout-container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 30px;
+        }
+
+        /* Sol Taraf */
+        .checkout-step {
+            border: 1px solid #d5d9d9;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .step-header {
+            background: #f3f3f3;
+            padding: 10px 20px;
+            border-bottom: 1px solid #d5d9d9;
+            font-weight: 700;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .step-body {
+            padding: 20px;
+            background: #fff;
+        }
+
+        /* Form Elemanları Hizalama */
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            /* Alt alta hizalama */
+            flex: 1;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: #111;
+        }
+
+        .form-group input {
+            padding: 10px;
+            border: 1px solid #a6a6a6;
+            border-radius: 3px;
+            font-size: 14px;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 1px 0 rgba(0, 0, 0, .07) inset;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: #e77600;
+            box-shadow: 0 0 3px 2px rgba(228, 121, 17, .5);
+            outline: none;
+        }
+
+        /* Sağ Taraf - Özet */
+        .checkout-sidebar {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .order-summary {
+            border: 1px solid #d5d9d9;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #f3f3f3;
+        }
+
+        .summary-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #E47911 0%, #f39c12 100%);
+            border: 1px solid #E47911;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 2px 5px rgba(228, 121, 17, .3);
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .summary-btn:hover {
+            background: linear-gradient(135deg, #f39c12 0%, #E47911 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(228, 121, 17, .4);
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .total-line {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-weight: 700;
+            font-size: 18px;
+            color: #B12704;
+        }
+
+        /* Kredi Kartı Görseli */
+        .card-visual {
+            background: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Payment Method Tabs */
+        .payment-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .payment-tab {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .payment-tab:hover {
+            border-color: #E47911;
+        }
+
+        .payment-tab.active {
+            border-color: #E47911;
+            background: #fff8f0;
+        }
+
+        .payment-tab i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+            color: #555;
+        }
+
+        .payment-tab.active i {
+            color: #E47911;
+        }
+
+        .payment-tab span {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .payment-content {
+            display: none;
+        }
+
+        .payment-content.active {
+            display: block;
+        }
+
+        .cod-info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .cod-info i {
+            font-size: 48px;
+            color: #E47911;
+            margin-bottom: 15px;
+        }
+
+        .cod-info h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .cod-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .cod-fee {
+            background: #fff3cd;
+            padding: 10px 15px;
+            border-radius: 6px;
+            color: #856404;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sade Header -->
+    <div class="checkout-header">
+        <div
+            style="max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between;">
+            <a href="index.html"
+                style="font-size: 24px; font-weight: 700; text-decoration: none; color: #000; display: flex; align-items: center; gap: 10px;">
+                <img src="images/logo.png" alt="AD" style="height: 40px; width: auto;">
+                Ayakkabı<span style="color: #E47911; font-style: italic;">Dünyası</span>
+            </a>
+            <h1 style="font-size: 20px; font-weight: 400; color: #555; margin: 0;">Ödeme Yap</h1>
+            <div style="color: #999; font-size: 13px;"><i class="fas fa-lock"></i> Güvenli Ödeme</div>
+        </div>
+    </div>
+
+    <div class="checkout-container">
+        <!-- SOL: Formlar -->
+        <div class="checkout-main">
+            <!-- Adres Kısmı -->
+            <div class="checkout-step">
+                <div class="step-header">1. Teslimat Adresi</div>
+                <div class="step-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Ad Soyad</label>
+                            <input type="text" id="payment-name" placeholder="Alıcının Adı Soyadı">
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon</label>
+                            <input type="text" id="payment-phone" placeholder="05XX XXX XX XX">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Adres</label>
+                        <input type="text" id="payment-address" placeholder="Cadde, Sokak, No, Daire">
+                    </div>
+                    <div class="form-row" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label>İl</label>
+                            <input type="text" id="payment-city" placeholder="Örn: İstanbul">
+                        </div>
+                        <div class="form-group">
+                            <label>İlçe</label>
+                            <input type="text" id="payment-district" placeholder="Örn: Kadıköy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ödeme Kısmı -->
+            <div class="checkout-step">
+                <div class="step-header">2. Ödeme Yöntemi</div>
+                <div class="step-body">
+                    <!-- Payment Method Tabs -->
+                    <div class="payment-tabs">
+                        <div class="payment-tab active" onclick="switchPaymentMethod('card')">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Kredi Kartı</span>
+                        </div>
+                        <div class="payment-tab" onclick="switchPaymentMethod('cod')">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Kapıdan Ödeme</span>
+                        </div>
+                    </div>
+
+                    <!-- Credit Card Content -->
+                    <div id="card-payment" class="payment-content active">
+                        <div class="card-visual">
+                            <span style="font-family: monospace; font-size: 18px;">**** **** **** ****</span>
+                            <i class="fab fa-cc-mastercard fa-2x"></i>
+                        </div>
+
+                        <form id="payment-form">
+                            <div class="form-group" style="margin-bottom: 15px;">
+                                <label>Kart Numarası</label>
+                                <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Kart Üzerindeki İsim</label>
+                                    <input type="text" id="card-name" placeholder="Ad Soyad">
+                                </div>
+                                <div class="form-group">
+                                    <label>Son Kullanma (AA/YY)</label>
+                                    <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label>CVV</label>
+                                    <input type="text" id="card-cvv" placeholder="123" maxlength="4">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Cash on Delivery Content -->
+                    <div id="cod-payment" class="payment-content">
+                        <div class="cod-info">
+                            <i class="fas fa-truck"></i>
+                            <h3>Kapıda Ödeme</h3>
+                            <p>Ürünlerinizi teslim alırken nakit veya kart ile ödeme yapabilirsiniz.</p>
+                            <div class="cod-fee">
+                                <i class="fas fa-info-circle"></i> Kapıda ödeme hizmet bedeli: +15 TL
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SAĞ: Özet -->
+        <div class="checkout-sidebar">
+            <div class="order-summary">
+                <button class="summary-btn"
+                    onclick="document.getElementById('payment-form').dispatchEvent(new Event('submit'))">Siparişi
+                    Onayla</button>
+                <div style="font-size: 11px; text-align: center; color: #555; margin-bottom: 15px;">
+                    Siparişi onaylayarak, Satış Koşulları'nı kabul etmiş olursunuz.
+                </div>
+
+                <h3 style="font-size: 16px; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 10px;">
+                    Sipariş Özeti</h3>
+
+                <div class="summary-line">
+                    <span>Ürünler:</span>
+                    <span id="summary-subtotal">0 TL</span>
+                </div>
+                <div class="summary-line">
+                    <span>Kargo:</span>
+                    <span style="color: #067D62;">Bedava</span>
+                </div>
+                <div class="summary-line">
+                    <span>KDV:</span>
+                    <span>Dahil</span>
+                </div>
+
+                <div class="total-line">
+                    <span>Toplam:</span>
+                    <span id="summary-total">0 TL</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Switch Payment Method
+        function switchPaymentMethod(method) {
+            // Toggle tabs
+            document.querySelectorAll('.payment-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+
+            // Toggle content
+            document.querySelectorAll('.payment-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            if (method === 'card') {
+                document.getElementById('card-payment').classList.add('active');
+            } else {
+                document.getElementById('cod-payment').classList.add('active');
+            }
+        }
+
+        // Sayfa yüklendiğinde sepet toplamını getir
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const params = new URLSearchParams(window.location.search);
+            let total = 0;
+
+            if (params.get('price')) {
+                total = parseFloat(params.get('price'));
+            } else {
+                total = cart.reduce((sum, item) => sum + item.price, 0);
+            }
+
+            const subtotalEl = document.getElementById('summary-subtotal');
+            const totalEl = document.getElementById('summary-total');
+
+            if (subtotalEl) subtotalEl.textContent = total + ' TL';
+            if (totalEl) totalEl.textContent = total + ' TL';
+        });
+    </script>
+</body>
+
+</html>

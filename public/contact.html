@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim & Yardım | Ayakkabı Dünyası</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="logo">Ayakkabı<span>Dünyası</span></a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-item"><span>Ana Sayfaya</span><span>Dön</span></a>
+        </nav>
+    </header>
+
+    <div class="container" style="max-width: 900px; margin: 40px auto;">
+        <h1 style="text-align: center; margin-bottom: 30px;">Nasıl Yardımcı Olabiliriz?</h1>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div class="amazon-card">
+                <h3>Bize Ulaşın</h3>
+                <form>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label class="amazon-label">Adınız Soyadınız</label>
+                        <input type="text" class="amazon-input" placeholder="Ad Soyad">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label class="amazon-label">E-posta Adresiniz</label>
+                        <input type="email" class="amazon-input" placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label class="amazon-label">Konu</label>
+                        <select class="amazon-select">
+                            <option>Sipariş Durumu</option>
+                            <option>İade ve Değişim</option>
+                            <option>Ürün Bilgisi</option>
+                            <option>Diğer</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label class="amazon-label">Mesajınız</label>
+                        <textarea rows="5" class="amazon-textarea"
+                            placeholder="Mesajınızı buraya yazınız..."></textarea>
+                    </div>
+                    <button class="amazon-btn" style="width: 100%;">Gönder</button>
+                </form>
+            </div>
+
+            <div>
+                <div class="amazon-card" style="margin-bottom: 20px;">
+                    <h3>İletişim Bilgileri</h3>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px; align-items: center;">
+                        <i class="fas fa-phone-alt" style="color: #e47911; width: 20px;"></i>
+                        <span>0850 123 45 67</span>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px; align-items: center;">
+                        <i class="fas fa-envelope" style="color: #e47911; width: 20px;"></i>
+                        <span>destek@ayakkabidunyasi.com</span>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: start;">
+                        <i class="fas fa-map-marker-alt" style="color: #e47911; width: 20px; margin-top: 3px;"></i>
+                        <span>Maslak Mah. Büyükdere Cad.<br>No: 123, Sarıyer / İstanbul</span>
+                    </div>
+                </div>
+
+                <div class="amazon-card">
+                    <h3>Sıkça Sorulan Sorular</h3>
+                    <details style="margin-bottom: 10px; cursor: pointer;">
+                        <summary style="font-weight: 600;">Kargo ücreti ne kadar?</summary>
+                        <p style="font-size: 0.9rem; color: #555; margin-top: 5px;">200 TL ve üzeri alışverişlerinizde
+                            kargo ücretsizdir.</p>
+                    </details>
+                    <details style="margin-bottom: 10px; cursor: pointer;">
+                        <summary style="font-weight: 600;">Kaç gün içinde iade edebilirim?</summary>
+                        <p style="font-size: 0.9rem; color: #555; margin-top: 5px;">Ürün teslim alındıktan sonra 30 gün
+                            içinde iade edebilirsiniz.</p>
+                    </details>
+                    <details style="cursor: pointer;">
+                        <summary style="font-weight: 600;">Mağazadan teslim alabilir miyim?</summary>
+                        <p style="font-size: 0.9rem; color: #555; margin-top: 5px;">Şu anda sadece online satış hizmeti
+                            vermekteyiz.</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-chevron-up"></i> Yukarıya Dön
+        </div>
+        <div class="footer-main">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Müşteri Hizmetleri</h3>
+                    <ul>
+                        <li><a href="contact.html">Bize Ulaşın</a></li>
+                        <li><a href="returns.html">İade ve Değişim</a></li>
+                        <li><a href="order-status.html">Sipariş Takibi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Kurumsal</h3>
+                    <ul>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                        <li><a href="careers.html">Kariyer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Güvenli Ödeme</h3>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Ayakkabı Dünyası. Tüm Hakları Saklıdır.
+        </div>
+    </footer>
+</body>
+
+</html>

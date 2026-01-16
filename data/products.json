@@ -1,0 +1,288 @@
+[
+  {
+    "id": 1,
+    "name": "Nike Air Zoom Pegasus 39",
+    "price": 3299,
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "description": "Her adımda enerji dönüşümü sağlayan, hafif ve nefes alabilir yapı.",
+    "category": "Erkek",
+    "type": "Spor Ayakkabı",
+    "subtype": "Koşu",
+    "colors": [
+      "Kırmızı",
+      "Siyah",
+      "Beyaz"
+    ],
+    "reviews": [
+      {
+        "user": "Ahmet Y.",
+        "rating": 5,
+        "comment": "Harika bir ayakkabı, çok rahat."
+      },
+      {
+        "user": "Mehmet K.",
+        "rating": 4,
+        "comment": "Biraz dar kalıp ama performansı iyi."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Adidas Ultraboost 22",
+    "price": 4150,
+    "image": "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "description": "Sonsuz enerji dönüşümü ve maksimum konfor için tasarlandı.",
+    "category": "Kadın",
+    "type": "Spor Ayakkabı",
+    "subtype": "Koşu",
+    "colors": [
+      "Beyaz",
+      "Gri",
+      "Pembe"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 3,
+    "name": "Puma RS-X3 Puzzle",
+    "price": 2850,
+    "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "description": "90'ların ruhunu yansıtan, kalın tabanlı ve renkli tasarım.",
+    "category": "Kadın",
+    "type": "Spor Ayakkabı",
+    "subtype": "Günlük",
+    "colors": [
+      "Renkli",
+      "Siyah"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 4,
+    "name": "New Balance 574 Core",
+    "price": 2400,
+    "image": "https://images.unsplash.com/photo-1539185441755-769473a23570?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "description": "Zamana meydan okuyan klasik tasarım ve dayanıklılık.",
+    "category": "Erkek",
+    "type": "Günlük Ayakkabı",
+    "subtype": "Sneakers",
+    "colors": [
+      "Gri",
+      "Lacivert"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 6,
+    "name": "Vans Old Skool",
+    "price": 1950,
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "description": "Kaykaycı kültürünün vazgeçilmezi, dayanıklı kanvas yapı.",
+    "category": "Erkek",
+    "type": "Spor Ayakkabı",
+    "subtype": "Günlük",
+    "colors": [
+      "Siyah",
+      "Damalı"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 7,
+    "name": "Klasik Deri Oxford",
+    "price": 3500,
+    "image": "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80",
+    "description": "İş hayatı ve özel davetler için şık siyah deri ayakkabı.",
+    "category": "Erkek",
+    "type": "Klasik Ayakkabı",
+    "subtype": "Oxford",
+    "colors": [
+      "Siyah",
+      "Kahverengi"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 9,
+    "name": "Çocuk Cırt Cırtlı Spor",
+    "price": 1200,
+    "image": "https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=800&q=80",
+    "description": "Çocuklar için kolay giyilebilir, rahat spor ayakkabı.",
+    "category": "Çocuk",
+    "type": "Spor Ayakkabı",
+    "subtype": "Okul",
+    "colors": [
+      "Mavi",
+      "Pembe",
+      "Beyaz"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 10,
+    "name": "Siyah Rugan Stiletto",
+    "price": 1499,
+    "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80",
+    "description": "Zarif ve şık, özel davetler için siyah rugan stiletto.",
+    "category": "Kadın",
+    "type": "Topuklu Ayakkabı",
+    "subtype": "Stiletto",
+    "colors": [
+      "Siyah",
+      "Kırmızı"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 11,
+    "name": "Platform Topuklu Sandalet",
+    "price": 1850,
+    "image": "https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=800&q=80",
+    "description": "Rahatlık ve şıklığı bir arada sunan platform topuklu.",
+    "category": "Kadın",
+    "type": "Topuklu Ayakkabı",
+    "subtype": "Platform",
+    "colors": [
+      "Bej",
+      "Beyaz"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 12,
+    "name": "Kahverengi Deri Chelsea Bot",
+    "price": 2750,
+    "image": "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?auto=format&fit=crop&w=800&q=80",
+    "description": "Hakiki deri, elastik yan bantlı klasik Chelsea bot.",
+    "category": "Erkek",
+    "type": "Bot & Çizme",
+    "subtype": "Chelsea",
+    "colors": [
+      "Kahverengi",
+      "Siyah"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 13,
+    "name": "Klasik Süet Loafer",
+    "price": 2100,
+    "image": "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80",
+    "description": "Yumuşak süet dokusuyla konforlu ve şık loafer.",
+    "category": "Erkek",
+    "type": "Klasik Ayakkabı",
+    "subtype": "Loafer",
+    "colors": [
+      "Taba",
+      "Lacivert"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 14,
+    "name": "Nike Air Force 1",
+    "price": 2899,
+    "image": "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?auto=format&fit=crop&w=800&q=80",
+    "description": "Efsanevi basketbol ayakkabısı, street style ikonu.",
+    "category": "Erkek",
+    "type": "Spor Ayakkabı",
+    "subtype": "Basketbol",
+    "colors": [
+      "Beyaz",
+      "Siyah"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 15,
+    "name": "Adidas Stan Smith",
+    "price": 2450,
+    "image": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80",
+    "description": "Minimalist tasarım, premium deri, tenis efsanesi.",
+    "category": "Kadın",
+    "type": "Spor Ayakkabı",
+    "subtype": "Tenis",
+    "colors": [
+      "Beyaz/Yeşil",
+      "Beyaz/Lacivert"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 16,
+    "name": "Kadın Koşu Ayakkabısı",
+    "price": 1899,
+    "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80",
+    "description": "Hafif ve esnek yapısıyla günlük koşu için ideal.",
+    "category": "Kadın",
+    "type": "Spor Ayakkabı",
+    "subtype": "Koşu",
+    "colors": [
+      "Pembe",
+      "Mor",
+      "Gri"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 17,
+    "name": "Kız Çocuk Bale Ayakkabısı",
+    "price": 650,
+    "image": "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=800&q=80",
+    "description": "Yumuşak deri, dans etkinlikleri için ideal.",
+    "category": "Çocuk",
+    "type": "Günlük Ayakkabı",
+    "subtype": "Bale",
+    "colors": [
+      "Pembe",
+      "Beyaz"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 18,
+    "name": "Erkek Çocuk Futbol Krampon",
+    "price": 1350,
+    "image": "https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=800&q=80",
+    "description": "Çim sahalar için profesyonel krampon.",
+    "category": "Çocuk",
+    "type": "Spor Ayakkabı",
+    "subtype": "Futbol",
+    "colors": [
+      "Yeşil",
+      "Mavi",
+      "Turuncu"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 19,
+    "name": "Kadın Kışlık Bot",
+    "price": 2200,
+    "image": "https://images.unsplash.com/photo-1605812860427-4024433a70fd?auto=format&fit=crop&w=800&q=80",
+    "description": "Su geçirmez, içi kürklü kışlık bot.",
+    "category": "Kadın",
+    "type": "Bot & Çizme",
+    "subtype": "Kışlık",
+    "colors": [
+      "Siyah",
+      "Kahverengi"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 20,
+    "name": "Erkek Trekking Bot",
+    "price": 2950,
+    "image": "https://images.unsplash.com/photo-1520219306100-ec4afeeefe64?auto=format&fit=crop&w=800&q=80",
+    "description": "Outdoor aktiviteler için dayanıklı trekking botu.",
+    "category": "Erkek",
+    "type": "Bot & Çizme",
+    "subtype": "Trekking",
+    "colors": [
+      "Kahverengi",
+      "Haki"
+    ],
+    "reviews": []
+  }
+]

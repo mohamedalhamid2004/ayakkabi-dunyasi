@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ürün Düzenle</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: white;"> <!-- Arka planı beyaz yaptık form öne çıksın diye -->
+    
+    <header>
+        <div class="logo">Satıcı<span>Merkezi</span></div>
+        <nav class="nav-links">
+            <div class="nav-item"><a href="admin.html"><span>Vazgeç</span><span>İptal Et</span></a></div>
+        </nav>
+    </header>
+
+    <div class="container" style="max-width: 600px; margin-top: 40px;">
+        <div class="form-box" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <h2 style="border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 20px;">Ürün Bilgilerini Düzenle</h2>
+            
+            <form id="update-form">
+                <div class="form-group">
+                    <label for="update-name">Ürün Adı</label>
+                    <input type="text" id="update-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="update-price">Satış Fiyatı (TL)</label>
+                    <input type="number" id="update-price" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="update-image">Görsel Bağlantısı</label>
+                    <input type="text" id="update-image">
+                </div>
+
+                <div class="form-group">
+                    <label for="update-desc">Ürün Açıklaması</label>
+                    <textarea id="update-desc" rows="5"></textarea>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Değişiklikleri Kaydet</button>
+                    <a href="admin.html" class="btn btn-secondary" style="flex: 1;">İptal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

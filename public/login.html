@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Giriş Yap | Ayakkabı Dünyası</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="auth-body">
+        <a href="index.html" class="auth-logo">Ayakkabı<span>Dünyası</span></a>
+
+        <div class="auth-container">
+            <h1 class="auth-title">Giriş Yap</h1>
+
+            <form id="login-form">
+                <div class="auth-form-group">
+                    <label for="username">Kullanıcı Adı</label>
+                    <input type="text" id="username" required>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="password">Şifre</label>
+                    <input type="password" id="password" required>
+                </div>
+
+                <button type="submit" class="auth-btn">Giriş Yap</button>
+            </form>
+
+            <div style="margin-top: 15px; font-size: 13px; text-align: center;">
+                Hesabınız yok mu? <a href="register.html" style="color: #0066c0; text-decoration: none;">Üye Ol</a>
+            </div>
+
+            <div id="error-msg" style="color: #c40000; font-size: 13px; margin-top: 10px; display: none;">
+                <i class="fas fa-exclamation-triangle"></i> <span id="error-text"></span>
+            </div>
+        </div>
+
+        <div class="footer-bottom" style="background: transparent; border: none; margin-top: 0;">
+            <div>&copy; 2026 Ayakkabı Dünyası, Inc.</div>
+        </div>
+    </div>
+
+    <!-- Script needs to handle login manually since we are not importing the full script.js to avoid clutter -->
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-msg');
+            const errorText = document.getElementById('error-text');
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    // All users go to main site
+                    window.location.href = 'index.html';
+                } else {
+                    errorText.textContent = data.message;
+                    errorMsg.style.display = 'block';
+                }
+            } catch (err) {
+                console.error(err);
+                errorText.textContent = "Bağlantı hatası.";
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        // Check for success message
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('registered')) {
+            const errorMsg = document.getElementById('error-msg');
+            const errorText = document.getElementById('error-text');
+            errorText.textContent = 'Kayıt başarılı! Lütfen giriş yapın.';
+            errorMsg.style.display = 'block';
+            errorMsg.style.color = '#067d62'; // Green for success
+            errorMsg.querySelector('i').className = 'fas fa-check-circle';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Satıcı Paneli - Ayakkabı Dünyası</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">Satıcı<span>Merkezi</span></div>
+        <nav class="nav-links">
+            <div class="nav-item"><a href="index.html"><span>Siteye</span><span>Geri Dön</span></a></div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="admin-header">
+            <h2>Envanter Yönetimi</h2>
+            <p style="color: #666;">Ürünlerinizi buradan ekleyebilir ve düzenleyebilirsiniz.</p>
+        </div>
+
+        <div class="admin-tabs" style="margin-bottom: 20px; display: flex; gap: 10px;">
+            <button class="amazon-btn" onclick="switchAdminTab('products')" style="background: #333; color: white;">Ürün
+                Yönetimi</button>
+            <button class="amazon-btn" onclick="switchAdminTab('users')">Kullanıcı Listesi</button>
+            <button class="amazon-btn" onclick="switchAdminTab('returns')">İade Talepleri</button>
+        </div>
+
+        <!-- PRODUCTS TAB -->
+        <div id="products-tab" class="admin-tab-content">
+            <div class="admin-grid"
+                style="display: grid; grid-template-columns: 1fr 2fr; gap: 30px; align-items: start;">
+                <!-- SOL: Ekleme Paneli -->
+                <div class="amazon-card">
+                    <h3>Yeni Ürün Ekle</h3>
+                    <form id="add-form">
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="amazon-label">Ürün Başlığı</label>
+                            <input type="text" id="name" required class="amazon-input">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div class="form-group" style="margin-bottom: 15px;">
+                                <label class="amazon-label">Fiyat (TL)</label>
+                                <input type="number" id="price" required class="amazon-input">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 15px;">
+                                <label class="amazon-label">Kategori</label>
+                                <select id="category" class="amazon-select">
+                                    <option value="Men">Erkek</option>
+                                    <option value="Women">Kadın</option>
+                                    <option value="Kids">Çocuk</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div class="form-group" style="margin-bottom: 15px;">
+                                <label class="amazon-label">Tür (Örn: Spor)</label>
+                                <input type="text" id="type" list="type-list" class="amazon-input">
+                                <datalist id="type-list">
+                                    <option value="Spor Ayakkabı">
+                                    <option value="Klasik Ayakkabı">
+                                    <option value="Bot & Çizme">
+                                    <option value="Topuklu Ayakkabılar">
+                                </datalist>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 15px;">
+                                <label class="amazon-label">Alt Tür (Örn: Koşu)</label>
+                                <input type="text" id="subtype" class="amazon-input">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="amazon-label">Renkler (Virgülle Ayırın)</label>
+                            <input type="text" id="colors" placeholder="Örn: Siyah, Beyaz, Kırmızı"
+                                class="amazon-input">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="amazon-label">Görsel URL</label>
+                            <input type="text" id="image" placeholder="https://..." class="amazon-input">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="amazon-label">Açıklama</label>
+                            <textarea id="desc" rows="3" class="amazon-textarea"></textarea>
+                        </div>
+
+                        <button type="submit" class="amazon-btn" style="width: 100%;">Envantere Ekle</button>
+                    </form>
+                </div>
+
+                <!-- SAĞ: Liste -->
+                <div class="amazon-card">
+                    <h3>Mevcut Envanter</h3>
+                    <table id="admin-table" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: #f3f3f3; text-align: left;">
+                                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Görsel</th>
+                                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Ürün Adı</th>
+                                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Kategori</th>
+                                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Fiyat</th>
+                                <th style="padding: 10px; border-bottom: 2px solid #ddd; text-align: right;">İşlemler
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-tbody"><!-- JS --></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- USERS TAB -->
+        <div id="users-tab" class="admin-tab-content" style="display: none;">
+            <!-- ... (Users content kept same) ... -->
+            <div class="amazon-card">
+                <h3>Kayıtlı Kullanıcılar</h3>
+                <table id="users-table" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #f3f3f3; text-align: left;">
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">ID</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">Kullanıcı Adı / Ad Soyad</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">Email</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">Yetki</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">Adres</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-tbody">
+                        <tr>
+                            <td colspan="5" style="padding:10px;">Yükleniyor...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- RETURNS TAB -->
+        <div id="returns-tab" class="admin-tab-content" style="display: none;">
+            <div class="amazon-card">
+                <h3>İade ve Değişim Talepleri</h3>
+                <table id="returns-table" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #f3f3f3; text-align: left;">
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">ID</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">Kullanıcı</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">Ürün</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">Tür/Sebep</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">Durum</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd;">İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="returns-tbody">
+                        <!-- JS populated -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Custom Modal -->
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="custom-modal">
+            <h3>Onaylıyor Musunuz?</h3>
+            <p id="modal-message">Bu işlemi yapmak istediğinize emin misiniz?</p>
+            <div class="modal-buttons">
+                <button id="modal-cancel" class="btn-modal-cancel">İptal</button>
+                <button id="modal-confirm" class="btn-modal-confirm">Sil</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

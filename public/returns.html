@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İade ve Değişim | Ayakkabı Dünyası</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="logo">Ayakkabı<span>Dünyası</span></a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-item"><span>Ana Sayfaya</span><span>Dön</span></a>
+        </nav>
+    </header>
+
+    <div class="tracking-container">
+        <div class="success-message">
+            <i class="fas fa-undo-alt success-icon"></i>
+            <h1 style="color: #067D62; margin-bottom: 10px;">İade ve Değişim Merkezi</h1>
+            <p style="color: #555;">İade talebinizin durumunu aşağıdan sorgulayabilirsiniz.</p>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div style="max-width: 400px; margin: 0 auto; display: flex; gap: 10px;">
+                <input type="text" class="amazon-input" placeholder="İade Talep No (Örn: IADE-9021)" value="IADE-9021"
+                    style="flex: 1;">
+                <button class="amazon-btn">Sorgula</button>
+            </div>
+        </div>
+
+        <!-- Return Tracking Progress -->
+        <h3 style="text-align: center; margin-bottom: 20px; color: #333;">İade Süreci: <span
+                style="color: #067D62;">#IADE-9021</span></h3>
+
+        <div class="progress-track">
+            <div class="step completed">
+                <div class="step-icon"><i class="fas fa-file-invoice"></i></div>
+                <div class="step-label">Talep Oluşturuldu</div>
+                <div class="step-date">10 Oca</div>
+            </div>
+            <div class="step active">
+                <div class="step-icon"><i class="fas fa-box-open"></i></div>
+                <div class="step-label">Ürün İnceleniyor</div>
+                <div class="step-date">İşleniyor...</div>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-check-double"></i></div>
+                <div class="step-label">İade Onaylandı</div>
+                <div class="step-date">Bekleniyor</div>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-wallet"></i></div>
+                <div class="step-label">Ücret İadesi</div>
+                <div class="step-date">Tahmini: 2 Gün</div>
+            </div>
+        </div>
+
+        <div
+            style="background: #fff3cd; color: #856404; padding: 20px; border-radius: 8px; margin-top: 40px; display: flex; gap: 15px; align-items: start;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 1.2rem; margin-top: 3px;"></i>
+            <div>
+                <strong>Önemli Bilgi:</strong> İade etmek istediğiniz ürünün orijinal kutusunda, kullanılmamış ve
+                faturası ile birlikte gönderilmesi gerekmektedir. İnceleme süreci ürün elimize ulaştıktan sonra ortalama
+                2 iş günüdür.
+            </div>
+        </div>
+    </div>
+
+    <!-- How to Return Guide -->
+    <div class="container" style="max-width: 900px; margin-top: 20px;">
+        <div class="amazon-card">
+            <h3>Nasıl İade Yaparım?</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
+                <div style="padding: 20px;">
+                    <div
+                        style="width: 40px; height: 40px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: bold;">
+                        1</div>
+                    <h4>Talep Oluştur</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Profilinizden ilgili siparişi seçip iade talebi
+                        oluşturun.</p>
+                </div>
+                <div style="padding: 20px;">
+                    <div
+                        style="width: 40px; height: 40px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: bold;">
+                        2</div>
+                    <h4>Kargoya Ver</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Size verilen kod ile ürünü ücretsiz olarak kargolayın.
+                    </p>
+                </div>
+                <div style="padding: 20px;">
+                    <div
+                        style="width: 40px; height: 40px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: bold;">
+                        3</div>
+                    <h4>İadeniz Tamam</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Ürün onaylandıktan sonra ücretiniz kartınıza yansır.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-chevron-up"></i> Yukarıya Dön
+        </div>
+        <div class="footer-main">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Müşteri Hizmetleri</h3>
+                    <ul>
+                        <li><a href="contact.html">Bize Ulaşın</a></li>
+                        <li><a href="returns.html">İade ve Değişim</a></li>
+                        <li><a href="order-status.html">Sipariş Takibi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Kurumsal</h3>
+                    <ul>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                        <li><a href="careers.html">Kariyer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Güvenli Ödeme</h3>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Ayakkabı Dünyası. Tüm Hakları Saklıdır.
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

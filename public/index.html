@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayakkabı Dünyası | Anasayfa</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Top Notification Bar -->
+    <div id="top-notification-bar">Sepete Eklendi!</div>
+
+    <!-- Header -->
+    <header>
+        <div class="hamburger-menu" id="hamburger-menu"
+            style="color:white; font-size:1.5rem; margin-right:15px; cursor:pointer;"><i class="fas fa-bars"></i></div>
+        <div class="logo">
+            <img src="images/logo.png" alt="AD" class="logo-icon">
+            <span class="logo-text">Ayakkabı<span>Dünyası</span></span>
+        </div>
+
+        <div class="search-wrapper">
+            <select id="search-category" class="search-select">
+                <option value="">Tümü</option>
+                <option value="Erkek">Erkek</option>
+                <option value="Kadın">Kadın</option>
+                <option value="Çocuk">Çocuk</option>
+            </select>
+            <input type="text" id="search-input" placeholder="Marka, model veya kategori ara...">
+            <button id="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="nav-links">
+            <div id="auth-area">
+                <a href="login.html" class="nav-item">
+                    <span>Merhaba, Giriş Yap</span>
+                    <span>Hesap ve Listeler</span>
+                </a>
+            </div>
+
+
+
+            <a href="add-product.html" class="nav-item" id="add-product-link"
+                style="display: none; flex-direction: column; align-items: center;">
+                <i class="fas fa-plus-circle"></i>
+                <span>Ürün Ekle</span>
+            </a>
+
+            <a href="admin.html" class="nav-item" id="admin-panel-link"
+                style="display: none; flex-direction: column; align-items: center;">
+                <i class="fas fa-user-shield"></i>
+                <span>Admin Paneli</span>
+            </a>
+
+            <div class="nav-item cart-icon-wrapper" id="cart-btn-header">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <span class="cart-count">0</span>
+                <span class="cart-text">Sepet</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay & Sidebar -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="sidebar-header">
+            <h3>Sepetim (<span class="cart-count">0</span>)</h3>
+            <button onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-content" id="sidebar-cart-items">
+            <!-- Items rendered via JS -->
+        </div>
+        <div class="sidebar-footer">
+            <div class="total-bar">
+                <span>Toplam:</span>
+                <span id="sidebar-total">0 TL</span>
+            </div>
+            <button onclick="window.location.href='payment.html'" class="checkout-btn">Sepeti Onayla</button>
+        </div>
+    </div>
+
+
+    <!-- Filter Sidebar (Mobile/Desktop) -->
+    <div class="filter-curtain" id="filter-curtain" onclick="toggleFilterSidebar()"></div>
+    <div class="filter-sidebar" id="filter-sidebar">
+        <div class="filter-header">
+            <div class="filter-header-content">
+                <i class="fas fa-th-large"></i>
+                <h3>Kategoriler</h3>
+            </div>
+            <button class="filter-close" onclick="toggleFilterSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="filter-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Kategori ara..." id="category-search">
+        </div>
+
+        <ul class="filter-menu">
+            <li class="filter-category">
+                <div class="menu-item" onclick="toggleSubmenu('kadin-sub')">
+                    <div class="menu-item-left">
+                        <span class="category-icon kadin-icon"><i class="fas fa-female"></i></span>
+                        <span class="category-name">Kadın</span>
+                    </div>
+                    <span class="menu-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <ul class="submenu" id="kadin-sub">
+                    <li onclick="filterProducts('Kadın', 'Ayakkabı', '')">
+                        <i class="fas fa-shoe-prints"></i> Tüm Ayakkabılar
+                    </li>
+                    <li onclick="filterProducts('Kadın', 'Ayakkabı', 'Spor')">
+                        <i class="fas fa-running"></i> Spor Ayakkabı
+                    </li>
+                    <li onclick="filterProducts('Kadın', 'Ayakkabı', 'Bot')">
+                        <i class="fas fa-hiking"></i> Bot & Çizme
+                    </li>
+                    <li onclick="filterProducts('Kadın', 'Ayakkabı', 'Topuklu')">
+                        <i class="fas fa-shoe-prints"></i> Topuklu Ayakkabı
+                    </li>
+                </ul>
+            </li>
+            <li class="filter-category">
+                <div class="menu-item" onclick="toggleSubmenu('erkek-sub')">
+                    <div class="menu-item-left">
+                        <span class="category-icon erkek-icon"><i class="fas fa-male"></i></span>
+                        <span class="category-name">Erkek</span>
+                    </div>
+                    <span class="menu-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <ul class="submenu" id="erkek-sub">
+                    <li onclick="filterProducts('Erkek', 'Ayakkabı', '')">
+                        <i class="fas fa-shoe-prints"></i> Tüm Ayakkabılar
+                    </li>
+                    <li onclick="filterProducts('Erkek', 'Ayakkabı', 'Spor')">
+                        <i class="fas fa-running"></i> Spor Ayakkabı
+                    </li>
+                    <li onclick="filterProducts('Erkek', 'Ayakkabı', 'Bot')">
+                        <i class="fas fa-hiking"></i> Bot
+                    </li>
+                    <li onclick="filterProducts('Erkek', 'Ayakkabı', 'Klasik')">
+                        <i class="fas fa-user-tie"></i> Klasik
+                    </li>
+                </ul>
+            </li>
+            <li class="filter-category">
+                <div class="menu-item" onclick="toggleSubmenu('cocuk-sub')">
+                    <div class="menu-item-left">
+                        <span class="category-icon cocuk-icon"><i class="fas fa-child"></i></span>
+                        <span class="category-name">Çocuk</span>
+                    </div>
+                    <span class="menu-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <ul class="submenu" id="cocuk-sub">
+                    <li onclick="filterProducts('Çocuk', 'Ayakkabı', '')">
+                        <i class="fas fa-shoe-prints"></i> Tüm Ayakkabılar
+                    </li>
+                    <li onclick="filterProducts('Çocuk', 'Ayakkabı', 'Spor')">
+                        <i class="fas fa-running"></i> Spor
+                    </li>
+                    <li onclick="filterProducts('Çocuk', 'Ayakkabı', 'Bot')">
+                        <i class="fas fa-hiking"></i> Bot
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="filter-footer">
+            <p><i class="fas fa-headset"></i> Yardım: <a href="contact.html">Bize Ulaşın</a></p>
+        </div>
+    </div>
+
+
+    <!-- Hero Slider -->
+    <div class="hero-slider">
+        <div class="hero-slide active">
+            <img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+                alt="Yeni Sezon Koleksiyonu">
+            <div class="hero-text-overlay">
+                <h1>Yeni Sezon Koleksiyonu</h1>
+                <p>En yeni modeller şimdi sizlerle</p>
+            </div>
+        </div>
+        <div class="hero-slide">
+            <img src="https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+                alt="Spor Ayakkabılar">
+            <div class="hero-text-overlay">
+                <h1>Spor Koleksiyonu</h1>
+                <p>Performansınızı artıran ayakkabılar</p>
+            </div>
+        </div>
+        <div class="hero-slide">
+            <img src="https://images.pexels.com/photos/1478442/pexels-photo-1478442.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+                alt="Premium Ayakkabılar">
+            <div class="hero-text-overlay">
+                <h1>Premium Kalite</h1>
+                <p>Lüks ve konforun buluşma noktası</p>
+            </div>
+        </div>
+        <!-- Slider Indicators -->
+        <div class="slider-indicators">
+            <span class="indicator active" onclick="goToSlide(0)"></span>
+            <span class="indicator" onclick="goToSlide(1)"></span>
+            <span class="indicator" onclick="goToSlide(2)"></span>
+        </div>
+    </div>
+
+    <!-- Category Showcase Section -->
+    <section class="category-showcase">
+        <div class="container">
+            <div class="section-header-modern">
+                <span class="section-badge">KATEGORİLER</span>
+                <h2>Tarzınızı Keşfedin</h2>
+                <p>Her tarza, her yaşa uygun geniş ürün yelpazesi</p>
+            </div>
+            <div class="category-grid">
+                <!-- Kadın Category -->
+                <a href="#" onclick="filterProducts('Kadın', 'Ayakkabı', '', false); return false;"
+                    class="category-card category-kadin">
+                    <img src="https://images.pexels.com/photos/336372/pexels-photo-336372.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Kadın Ayakkabıları" class="category-bg-img">
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <span class="category-badge">YENİ</span>
+                        <h3>Kadın</h3>
+                        <p>Şıklığın adresi</p>
+                        <span class="category-cta">Koleksiyonu Keşfet <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <!-- Erkek Category -->
+                <a href="#" onclick="filterProducts('Erkek', 'Ayakkabı', '', false); return false;"
+                    class="category-card category-erkek">
+                    <img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Erkek Ayakkabıları" class="category-bg-img">
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <span class="category-badge">POPÜLER</span>
+                        <h3>Erkek</h3>
+                        <p>Tarzını yansıt</p>
+                        <span class="category-cta">Koleksiyonu Keşfet <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <!-- Çocuk Category -->
+                <a href="#" onclick="filterProducts('Çocuk', 'Ayakkabı', '', false); return false;"
+                    class="category-card category-cocuk">
+                    <img src="https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Çocuk Ayakkabıları" class="category-bg-img">
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <span class="category-badge">EĞLENCE</span>
+                        <h3>Çocuk</h3>
+                        <p>Eğlenceli adımlar</p>
+                        <span class="category-cta">Koleksiyonu Keşfet <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Günün Fırsatları Section -->
+    <section class="deals-section">
+        <div class="container">
+            <div class="section-header-modern deals-header">
+                <div class="deals-title-wrapper">
+                    <div class="flash-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h2>Günün Fırsatları</h2>
+                        <p>Kaçırılmayacak indirimler</p>
+                    </div>
+                </div>
+                <div class="deals-timer">
+                    <span class="timer-label">Kampanya bitimine kalan süre:</span>
+                    <div class="countdown" id="countdown">
+                        <div class="time-block">
+                            <span id="hours">23</span>
+                            <small>Saat</small>
+                        </div>
+                        <div class="time-separator">:</div>
+                        <div class="time-block">
+                            <span id="minutes">59</span>
+                            <small>Dakika</small>
+                        </div>
+                        <div class="time-separator">:</div>
+                        <div class="time-block">
+                            <span id="seconds">59</span>
+                            <small>Saniye</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid product-grid-enhanced" id="product-list">
+                <!-- Loaded via JS -->
+                <div class="loading-skeleton">
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Cart Button -->
+    <div class="floating-cart" id="floating-cart-btn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div> <!-- Corrected ID and Class -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-chevron-up"></i> Yukarıya Dön
+        </div>
+        <div class="footer-main">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Müşteri Hizmetleri</h3>
+                    <ul>
+                        <li><a href="contact.html">Bize Ulaşın</a></li>
+                        <li><a href="returns.html">İade ve Değişim</a></li>
+                        <li><a href="order-status.html">Sipariş Takibi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Kurumsal</h3>
+                    <ul>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                        <li><a href="careers.html">Kariyer</a></li>
+                        <li><a href="#">Gizlilik Politikası</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Güvenli Ödeme</h3>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </div>
+                    <div class="secure-badge">
+                        <i class="fas fa-lock"></i> 256-bit SSL Güvenlik
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Ayakkabı Dünyası. Tüm Hakları Saklıdır.
+        </div>
+    </footer>
+
+    <script src="js/script.js?v=fix5"></script>
+</body>
+
+</html>

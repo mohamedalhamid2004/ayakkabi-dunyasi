@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sipariş Takibi | Ayakkabı Dünyası</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body style="background: #fff;">
+    <header>
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="AD" class="logo-icon">
+            <span class="logo-text">Ayakkabı<span>Dünyası</span></span>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-item">
+                <span>Alışverişe</span>
+                <span>Devam Et</span>
+            </a>
+        </nav>
+    </header>
+
+    <div class="tracking-container">
+        <!-- Success Message -->
+        <div class="success-message">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h1 style="color: #067D62; margin-bottom: 10px;">Teşekkürler, Siparişiniz Alındı!</h1>
+            <p>Sipariş numaranız: <span id="order-id" class="order-id">#TR-829301</span></p>
+            <p style="margin-top: 10px; color: #555;">Sipariş detaylarını ve kargo durumunu aşağıdan takip
+                edebilirsiniz.</p>
+        </div>
+
+        <!-- İlerleme Çubuğu -->
+        <div class="progress-track">
+            <div class="step active">
+                <div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
+                <div class="step-label">Sipariş Alındı</div>
+                <div class="step-date">Bugün, 14:30</div>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-box-open"></i></div>
+                <div class="step-label">Hazırlanıyor</div>
+                <div class="step-date">Bekleniyor</div>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-shipping-fast"></i></div>
+                <div class="step-label">Kargoya Verildi</div>
+                <div class="step-date">Bekleniyor</div>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-home"></i></div>
+                <div class="step-label">Teslim Edildi</div>
+                <div class="step-date">Tahmini: 3 Gün</div>
+            </div>
+        </div>
+
+        <!-- Info Box -->
+        <div
+            style="background: #f4f4f4; padding: 20px; border-radius: 8px; margin-top: 40px; display: flex; gap: 20px; align-items: center;">
+            <i class="fas fa-info-circle" style="font-size: 1.5rem; color: #007185;"></i>
+            <div>
+                <strong>Bilgilendirme:</strong> Siparişiniz hazırlandığında size SMS ve E-posta ile bilgilendirme
+                yapılacaktır.
+            </div>
+        </div>
+
+        <!-- Return Button -->
+        <div style="text-align:center; margin-top:20px;">
+            <button onclick="openReturnModal()"
+                style="background:none; border:none; color:#555; text-decoration:underline; cursor:pointer;">İade veya
+                Değişim Talebi Oluştur</button>
+        </div>
+
+        <a href="index.html" class="btn btn-primary"
+            style="max-width: 250px; margin: 30px auto 0; padding: 12px;">Alışverişe Dön</a>
+    </div>
+
+    <!-- Return Modal -->
+    <div id="return-modal" class="modal-overlay"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10000; justify-content:center; align-items:center;">
+        <div style="background:white; padding:30px; border-radius:8px; width:90%; max-width:400px; position:relative;">
+            <h3 style="margin-bottom:20px;">İade / Değişim Talebi</h3>
+
+            <div style="margin-bottom:15px;">
+                <label style="display:block; margin-bottom:5px; font-weight:600;">İşlem Türü:</label>
+                <select id="return-type" style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;">
+                    <option value="return">İade (Para İadesi)</option>
+                    <option value="exchange">Değişim (Farklı Beden/Renk)</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom:15px;">
+                <label style="display:block; margin-bottom:5px; font-weight:600;">Ürün Seçiniz:</label>
+                <input type="text" id="return-product" placeholder="Ürün adı yazınız..."
+                    style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;">
+                <small style="color:#666;">(Örn: Nike Air Max - 42)</small>
+            </div>
+
+            <div style="margin-bottom:15px;">
+                <label style="display:block; margin-bottom:5px; font-weight:600;">Sebep:</label>
+                <textarea id="return-reason" rows="3" placeholder="Lütfen sebep belirtiniz..."
+                    style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;"></textarea>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                <button onclick="closeReturnModal()"
+                    style="background:#ddd; border:none; padding:8px 15px; border-radius:4px; cursor:pointer;">İptal</button>
+                <button onclick="submitReturnRequest()"
+                    style="background:#f27a1a; color:white; border:none; padding:8px 15px; border-radius:4px; cursor:pointer;">Talep
+                    Oluştur</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Rastgele Sipariş No Oluştur
+        document.getElementById('order-id').innerText = '#TR-' + Math.floor(100000 + Math.random() * 900000);
+    </script>
+</body>
+
+</html>
