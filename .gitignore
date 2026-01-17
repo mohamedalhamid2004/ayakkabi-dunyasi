@@ -7,3 +7,12 @@ Thumbs.db
 .vscode/
 .idea/
 npm-debug.log*
+
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+.firebaserc
+serviceAccountKey.json
+ui-debug.log
+firestore-debug.log
