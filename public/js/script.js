@@ -1134,9 +1134,42 @@ if (addForm) {
 // Global Delete Function
 // ... (previous admin logic)
 
-// Global Delete Function (kept)
-window.deleteProduct = async (id) => {
-    // ... (existing delete logic)
+// Global Delete Function (updated with custom modal)
+window.deleteProduct = (id) => {
+    // Modal'ı göster
+    const modal = document.getElementById('confirm-modal');
+    const modalMsg = document.getElementById('modal-message');
+    const confirmBtn = document.getElementById('modal-confirm');
+    const cancelBtn = document.getElementById('modal-cancel');
+
+    if (!modal) {
+        // Fallback: Modal yoksa confirm kullan
+        if (confirm('Bu ürünü silmek istediğinizden emin misiniz?')) {
+            deleteProductConfirm(id);
+        }
+        return;
+    }
+
+    modalMsg.textContent = 'Bu ürünü silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.';
+    modal.style.display = 'flex';
+
+    // Evet butonuna tıklanınca
+    confirmBtn.onclick = () => {
+        modal.style.display = 'none';
+        deleteProductConfirm(id);
+    };
+
+    // İptal butonuna tıklanınca
+    cancelBtn.onclick = () => {
+        modal.style.display = 'none';
+    };
+
+    // Modal dışına tıklanınca kapat
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    };
 };
 
 // --- RETURN SYSTEM LOGIC ---
