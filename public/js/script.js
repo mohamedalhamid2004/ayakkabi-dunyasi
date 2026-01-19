@@ -738,7 +738,9 @@ window.renderProducts = (products) => {
                     <span class="rating-count">1,240</span>
                 </div>
                 <div class="card-price">${p.price} <sup>TL</sup></div>
-                <button onclick="addToCart(${p.id}, '${p.name}', ${p.price}, '${p.image}')" class="btn btn-primary">Sepete Ekle</button>
+            </div>
+            <div class="card-footer">
+                <button onclick="window.location.href='product.html?id=${p.id}'" class="btn btn-primary">Detayları Gör</button>
             </div>
         </div>
     `).join('');
@@ -1392,8 +1394,6 @@ function addAdminProductButtons() {
 
 // Delete product with confirmation
 window.deleteProductConfirm = async function (productId) {
-    if (!confirm('Bu ürünü silmek istediğinizden emin misiniz?')) return;
-
     try {
         const res = await fetch(`/api/products/${productId}`, { method: 'DELETE' });
         if (res.ok) {
