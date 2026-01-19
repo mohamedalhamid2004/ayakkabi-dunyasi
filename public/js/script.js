@@ -409,16 +409,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     });
                 }
 
-                // Button Actions
-                const addToCartBtn = document.getElementById('add-cart-btn');
-                if (addToCartBtn) addToCartBtn.onclick = () => addToCart(p.id, p.name, p.price, p.image);
+                // Button Actions - Removed from here
+                // These are handled in product.html with size validation
+                // DO NOT add onclick handlers here for #add-cart-btn or #buy-now-btn
 
-                const buyNowBtn = document.getElementById('buy-now-btn');
-                if (buyNowBtn) buyNowBtn.onclick = () => {
-                    const user = JSON.parse(localStorage.getItem('user'));
-                    if (!user) window.location.href = 'login.html';
-                    else window.location.href = `payment.html?id=${p.id}&price=${p.price}&name=${encodeURIComponent(p.name)}`;
-                };
 
             } catch (err) {
                 console.error("Error loading product:", err);
