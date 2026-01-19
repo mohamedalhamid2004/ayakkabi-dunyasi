@@ -255,19 +255,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.log('Cart:', cart);
                 console.log('Total:', total);
 
-                // Check if user is logged in
-                if (!user || !user.id) {
-                    console.error('User not logged in!');
-                    showPaymentError('Lütfen önce giriş yapınız.');
-                    if (btn) {
-                        btn.innerHTML = 'Siparişi Onayla';
-                        btn.disabled = false;
-                    }
-                    setTimeout(() => {
-                        window.location.href = 'login.html';
-                    }, 2000);
-                    return;
-                }
+                // Misafir kullanıcı veya giriş yapmış kullanıcı - ikisi de sipariş verebilir
+                const userId = user && user.id ? user.id : 'guest_' + Date.now();
+                const customerName = newName || (user && user.username) || 'Misafir Kullanıcı';
 
                 try {
                     console.log('Sending order request...');
@@ -275,7 +265,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            userId: user.id,
+                            userId: userId,
+                            customerName: customerName,
                             total: total,
                             items: cart,
                             address: fullAddress
@@ -293,8 +284,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const responseData = await orderRes.json();
                     console.log('Order success:', responseData);
 
-                    // Update profile in background (non-blocking)
-                    if (user && newAddr) {
+                    // Update profile in background (only for logged-in users)
+                    if (user && user.id && newAddr) {
                         const updateData = { id: user.id, address: newAddr, username: newName, phone: newPhone, city: newCity, district: newDistrict };
                         fetch('/api/profile', {
                             method: 'POST',
