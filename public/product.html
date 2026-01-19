@@ -255,7 +255,7 @@
         // "Sepete Ekle" Logic
         document.getElementById('add-cart-btn').addEventListener('click', () => {
             if (!selectedSize) {
-                showToast("Lütfen beden seçiniz.", "error");
+                showToast("Ayakkabı numaranızı seçin", "error");
                 const sizeOptions = document.querySelector('.size-options');
                 sizeOptions.style.border = "2px solid red";
                 sizeOptions.style.borderRadius = "4px";
@@ -290,7 +290,7 @@
         // "Hemen Al" Logic
         document.getElementById('buy-now-btn').addEventListener('click', () => {
             if (!selectedSize) {
-                showToast("Lütfen beden seçiniz.", "error");
+                showToast("Ayakkabı numaranızı seçin", "error");
                 const sizeOptions = document.querySelector('.size-options');
                 sizeOptions.style.border = "2px solid red";
                 sizeOptions.style.borderRadius = "4px";
