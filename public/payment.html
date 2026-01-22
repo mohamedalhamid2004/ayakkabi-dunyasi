@@ -423,6 +423,75 @@
             if (subtotalEl) subtotalEl.textContent = total + ' TL';
             if (totalEl) totalEl.textContent = total + ' TL';
         });
+
+        // Kart Numarası Validasyonu ve Formatlama
+        const cardNumber = document.getElementById('card-number');
+        const cardCvv = document.getElementById('card-cvv');
+        const cardExpiry = document.getElementById('card-expiry');
+
+        // Kart Numarası: Sadece rakam, 16 hane, otomatik 4'lü gruplar
+        if (cardNumber) {
+            cardNumber.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\s/g, ''); // Boşlukları kaldır
+                value = value.replace(/\D/g, ''); // Sadece rakam
+                value = value.substring(0, 16); // Maksimum 16 hane
+
+                // 4'lü gruplar halinde formatla
+                let formatted = value.match(/.{1,4}/g);
+                e.target.value = formatted ? formatted.join(' ') : '';
+            });
+
+            // Paste olayında da çalışsın
+            cardNumber.addEventListener('paste', (e) => {
+                setTimeout(() => {
+                    let value = e.target.value.replace(/\s/g, '');
+                    value = value.replace(/\D/g, '');
+                    value = value.substring(0, 16);
+                    let formatted = value.match(/.{1,4}/g);
+                    e.target.value = formatted ? formatted.join(' ') : '';
+                }, 0);
+            });
+        }
+
+        // CVV: Sadece rakam, 3-4 hane
+        if (cardCvv) {
+            cardCvv.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, ''); // Sadece rakam
+                e.target.value = value.substring(0, 4); // Max 4 hane
+            });
+        }
+
+        // Son Kullanma Tarihi: MM/YY formatı
+        if (cardExpiry) {
+            cardExpiry.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, ''); // Sadece rakam
+
+                if (value.length >= 2) {
+                    // İlk 2 hane ay (01-12 arası olmalı)
+                    let month = value.substring(0, 2);
+                    let year = value.substring(2, 4);
+
+                    // Ay validasyonu
+                    if (parseInt(month) > 12) {
+                        month = '12';
+                    }
+                    if (parseInt(month) < 1 && month.length === 2) {
+                        month = '01';
+                    }
+
+                    e.target.value = month + (year ? '/' + year : '');
+                } else {
+                    e.target.value = value;
+                }
+            });
+
+            // Backspace ile / karakterini silme
+            cardExpiry.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value.endsWith('/')) {
+                    e.target.value = e.target.value.slice(0, -1);
+                }
+            });
+        }
     </script>
 </body>
 
