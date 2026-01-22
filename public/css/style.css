@@ -153,6 +153,7 @@
     animation: iconPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s backwards;
 }
 
+
 @keyframes toastSlideIn {
     from {
         transform: translateX(120%) scale(0.8);
@@ -165,11 +166,16 @@
     }
 }
 
-to {
-    transform: translateX(0);
-    opacity: 1;
+@keyframes iconPop {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }
-}
+
 
 body {
     background-color: var(--white);

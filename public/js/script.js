@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     updateHeaderAuth();
     updateCartBadge();
-    addAdminProductButtons(); // Add admin controls to products
+    // Admin controls removed - no edit/delete buttons on products
 
 
     // Hamburger Menu Tıklanınca Filter Sidebar Aç
@@ -1315,12 +1315,66 @@ window.requireAdmin = function () {
 }
 
 // Add admin controls to product cards
-// Admin product buttons removed per user request
-// All users (including admins) will only see "Sepete Ekle" button on product cards
-// Admins can manage products via Admin Panel (admin.html)
 function addAdminProductButtons() {
-    // Functionality disabled - admins should use the admin panel
-    return;
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user || !user.isAdmin) return; // Only for admins
+
+    // Wait a bit for products to load, then inject buttons
+    setTimeout(() => {
+        const productElements = document.querySelectorAll('.product, [data-product-id], [onclick*="product.html"]');
+
+        productElements.forEach(productEl => {
+            // Skip if already has admin controls
+            if (productEl.querySelector('.admin-controls')) return;
+
+            // Extract product ID from onclick or href
+            let productId = productEl.dataset.productId;
+            if (!productId) {
+                const onclick = productEl.getAttribute('onclick') || '';
+                const match = onclick.match(/id=(\d+)/);
+                if (match) productId = match[1];
+            }
+
+            if (!productId) return; // Can't add controls without ID
+
+            // Create admin controls div
+            const adminDiv = document.createElement('div');
+            adminDiv.className = 'admin-controls';
+            adminDiv.style.cssText = 'position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; z-index: 10;';
+
+            // Edit button
+            const editBtn = document.createElement('button');
+            editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+            editBtn.title = 'Düzenle';
+            editBtn.style.cssText = 'background: #007bff; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; font-size: 14px;';
+            editBtn.onclick = (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                window.location.href = `add-product.html?edit=${productId}`;
+            };
+
+            // Delete button  
+            const delBtn = document.createElement('button');
+            delBtn.innerHTML = '<i class="fas fa-trash"></i>';
+            delBtn.title = 'Sil';
+            delBtn.style.cssText = 'background: #dc3545; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; font-size: 14px;';
+            delBtn.onclick = (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                deleteProductConfirm(productId);
+            };
+
+            adminDiv.appendChild(editBtn);
+            adminDiv.appendChild(delBtn);
+
+            // Make product element relative positioned
+            if (getComputedStyle(productEl).position === 'static') {
+                productEl.style.position = 'relative';
+            }
+
+            productEl.appendChild(adminDiv);
+        });
+    }, 1000); // Wait 1 second for products to load
 }
 
 // Delete product with confirmation
