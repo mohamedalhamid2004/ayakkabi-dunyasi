@@ -379,6 +379,34 @@ document.addEventListener('DOMContentLoaded', async () => {
                 } else {
                     document.getElementById('color-section').style.display = 'none';
                 }
+
+                // Dynamic Size Buttons Based on Category
+                const sizeContainer = document.getElementById('size-options');
+                if (sizeContainer) {
+                    sizeContainer.innerHTML = ''; // Clear existing buttons
+
+                    let sizeRange = [];
+                    // Check category and set size range accordingly
+                    if (p.category && p.category.includes('Çocuk')) {
+                        // Children: 28-36
+                        sizeRange = [28, 29, 30, 31, 32, 33, 34, 35, 36];
+                    } else if (p.category && (p.category.includes('Kadın') || p.category.includes('Women'))) {
+                        // Women: 36-41
+                        sizeRange = [36, 37, 38, 39, 40, 41];
+                    } else {
+                        // Men or default: 40-45
+                        sizeRange = [40, 41, 42, 43, 44, 45];
+                    }
+
+                    // Generate size buttons
+                    sizeRange.forEach(size => {
+                        const btn = document.createElement('button');
+                        btn.className = 'size-btn';
+                        btn.textContent = size;
+                        sizeContainer.appendChild(btn);
+                    });
+                }
+
                 // Reviews Rendering
                 const reviewsContainer = document.getElementById('reviews-list');
                 const user = JSON.parse(localStorage.getItem('user'));
