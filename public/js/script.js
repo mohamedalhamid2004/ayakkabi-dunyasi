@@ -1,5 +1,9 @@
-const API_URL = 'http://localhost:3000/api/products';
-const AUTH_URL = 'http://localhost:3000/api';
+// Auto-detect environment: use current host in production, localhost in development
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const BASE_URL = isLocalhost ? 'http://localhost:3000' : window.location.origin;
+
+const API_URL = `${BASE_URL}/api/products`;
+const AUTH_URL = `${BASE_URL}/api`;
 
 document.addEventListener('DOMContentLoaded', async () => {
     const path = window.location.pathname;
