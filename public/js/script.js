@@ -773,7 +773,7 @@ window.renderProducts = (products) => {
                 <div class="card-price">${p.price} <sup>TL</sup></div>
             </div>
             <div class="card-footer">
-                <button onclick="window.location.href='product.html?id=${p.id}'" class="btn btn-primary">Sepete Ekle</button>
+                <button onclick="window.location.href='product.html?id=${p.id}'" class="btn btn-primary">Ürünü İncele</button>
             </div>
         </div>
     `).join('');
