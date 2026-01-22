@@ -398,11 +398,27 @@ document.addEventListener('DOMContentLoaded', async () => {
                         sizeRange = [40, 41, 42, 43, 44, 45];
                     }
 
-                    // Generate size buttons
+                    // Generate size buttons with event listeners
                     sizeRange.forEach(size => {
                         const btn = document.createElement('button');
                         btn.className = 'size-btn';
                         btn.textContent = size;
+
+                        // Add click event listener to each button
+                        btn.addEventListener('click', function () {
+                            // Remove 'selected' class from all size buttons
+                            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+                            // Add 'selected' class to clicked button
+                            this.classList.add('selected');
+                            // Update selected size variable (for product.html)
+                            if (typeof selectedSize !== 'undefined') {
+                                selectedSize = this.textContent;
+                            }
+                            // Remove error border if exists
+                            const sizeOptions = document.querySelector('.size-options');
+                            if (sizeOptions) sizeOptions.style.border = 'none';
+                        });
+
                         sizeContainer.appendChild(btn);
                     });
                 }
