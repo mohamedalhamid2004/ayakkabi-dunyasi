@@ -1,5 +1,5 @@
-const API_URL = 'http://localhost:3003/api/products';
-const AUTH_URL = 'http://localhost:3003/api';
+const API_URL = 'http://localhost:3000/api/products';
+const AUTH_URL = 'http://localhost:3000/api';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const path = window.location.pathname;
