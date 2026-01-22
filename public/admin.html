@@ -94,7 +94,11 @@
                             <textarea id="desc" rows="3" class="amazon-textarea"></textarea>
                         </div>
 
-                        <button type="submit" class="amazon-btn" style="width: 100%;">Envantere Ekle</button>
+                        <div style="display: flex; gap: 10px;">
+                            <button type="submit" class="amazon-btn" style="flex: 1;">Envantere Ekle</button>
+                            <button type="button" id="cancel-edit-btn" onclick="resetAdminForm()" class="amazon-btn"
+                                style="flex: 1; background: #6c757d; display: none;">İptal</button>
+                        </div>
                     </form>
                 </div>
 

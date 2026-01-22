@@ -1082,16 +1082,21 @@ if (addForm) {
             reviews: []
         };
 
+        const editId = addForm.dataset.editId;
+        const isEdit = !!editId;
+        const url = isEdit ? `${API_URL}/${editId}` : API_URL;
+        const method = isEdit ? 'PUT' : 'POST';
+
         try {
-            const res = await fetch(API_URL, {
-                method: 'POST',
+            const res = await fetch(url, {
+                method: method,
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(product)
             });
 
             if (res.ok) {
-                showToast('Ürün başarıyla eklendi!', 'success');
-                addForm.reset();
+                showToast(isEdit ? 'Ürün güncellendi!' : 'Ürün başarıyla eklendi!', 'success');
+                resetAdminForm();
                 renderAdminTable();
             } else {
                 showToast('Hata oluştu.', 'error');
@@ -1112,6 +1117,7 @@ if (addForm) {
                 <td style="padding: 10px;">${p.category || '-'}</td>
                 <td style="padding: 10px;">${p.price} TL</td>
                 <td style="padding: 10px; text-align: right;">
+                    <button onclick="editProduct(${p.id})" style="color: white; border: none; background: #3498db; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-right: 5px;">Düzenle</button>
                     <button onclick="deleteProduct(${p.id})" style="color: white; border: none; background: #e74c3c; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">Sil</button>
                 </td>
             </tr>
@@ -1121,6 +1127,64 @@ if (addForm) {
     // Initial Load
     renderAdminTable();
 }
+
+// Edit Product Function
+window.editProduct = async (id) => {
+    try {
+        // Fetch product data
+        const product = await (await fetch(`${API_URL}/${id}`)).json();
+
+        // Populate form fields
+        document.getElementById('name').value = product.name;
+        document.getElementById('price').value = product.price;
+        document.getElementById('category').value = product.category;
+        document.getElementById('type').value = product.type;
+        document.getElementById('subtype').value = product.subtype || '';
+        document.getElementById('colors').value = product.colors ? product.colors.join(', ') : '';
+        document.getElementById('image').value = product.image;
+        document.getElementById('desc').value = product.description;
+
+        // Change form to edit mode
+        const formTitle = document.querySelector('.amazon-card h3');
+        if (formTitle) formTitle.textContent = 'Ürünü Düzenle';
+
+        const submitBtn = document.querySelector('#add-form button[type="submit"]');
+        if (submitBtn) submitBtn.textContent = 'Değişiklikleri Kaydet';
+
+        // Show cancel button
+        const cancelBtn = document.getElementById('cancel-edit-btn');
+        if (cancelBtn) cancelBtn.style.display = 'block';
+
+        // Store product ID for update
+        document.getElementById('add-form').dataset.editId = id;
+
+        // Scroll to form
+        document.querySelector('.amazon-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        showToast('Düzenleme moduna geçildi', 'info');
+    } catch (err) {
+        console.error(err);
+        showToast('Ürün yüklenemedi', 'error');
+    }
+};
+
+// Reset Admin Form Function
+window.resetAdminForm = () => {
+    const form = document.getElementById('add-form');
+    if (form) {
+        form.reset();
+        delete form.dataset.editId; // Remove edit mode
+    }
+
+    const formTitle = document.querySelector('.amazon-card h3');
+    if (formTitle) formTitle.textContent = 'Yeni Ürün Ekle';
+
+    const submitBtn = document.querySelector('#add-form button[type="submit"]');
+    if (submitBtn) submitBtn.textContent = 'Envantere Ekle';
+
+    const cancelBtn = document.getElementById('cancel-edit-btn');
+    if (cancelBtn) cancelBtn.style.display = 'none';
+};
 
 // Global Delete Function
 // ... (previous admin logic)
